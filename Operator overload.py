@@ -7,26 +7,39 @@ class House:
         return f'Название: {self.name}, кол-во этажей: {self.number_of_floors}'
 
     def __eq__(self, other):
-        return self.number_of_floors == other.number_of_floors
+        if isinstance(other, House):
+            return self.number_of_floors == other.number_of_floors
+        return print('Ошибка!')
 
     def __lt__(self, other):
-        return self.number_of_floors < other.number_of_floors
+        if isinstance(other, House):
+            return self.number_of_floors < other.number_of_floors
+        return print('Ошибка!')
 
     def __le__(self, other):
-        return self.number_of_floors <= other.number_of_floors
+        if isinstance(other, House):
+            return self.number_of_floors <= other.number_of_floors
+        return print('Ошибка!')
 
     def __gt__(self, other):
-        return self.number_of_floors > other.number_of_floors
+        if isinstance(other, House):
+            return self.number_of_floors > other.number_of_floors
+        return print('Ошибка!')
 
     def __ge__(self, other):
-        return self.number_of_floors >= other.number_of_floors
+        if isinstance(other, House):
+            return self.number_of_floors >= other.number_of_floors
+        return print('Ошибка!')
 
     def __ne__(self, other):
-        return self.number_of_floors != other.number_of_floors
+        if isinstance(other, House):
+            return self.number_of_floors != other.number_of_floors
+        return print('Ошибка!')
 
     def __add__(self, value):
         if isinstance(value, int):
             return House(self.name, self.number_of_floors + value)
+        return print('Ошибка!')
 
     def __radd__(self, value):
         return self.__add__(value)
@@ -35,6 +48,7 @@ class House:
         if isinstance(value, int):
             self.number_of_floors += value
             return self
+        return print('Ошибка!')
 
 
 
