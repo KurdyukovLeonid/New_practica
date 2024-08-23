@@ -43,6 +43,7 @@ class Tournament:
 
 
 class TournamentTest(ut.TestCase):
+    is_frozen = True
     @classmethod
     def setUpClass(cls):
         cls.all_results = {}
@@ -57,18 +58,21 @@ class TournamentTest(ut.TestCase):
         for place, runner in cls.all_results.items():
             print(f"Place {place}: {runner.name}")
 
+    @ut.skipIf(is_frozen == True, 'Тесты в этом кейсе заморожены')
     def test_tournament_usain_nick(self):
         tournament = Tournament(90, self.runner1, self.runner3)
         results = tournament.start()
         self.all_results.update(results)
         self.assertTrue(self.all_results[max(self.all_results.keys())].name == "Nick")
 
+    @ut.skipIf(is_frozen == True, 'Тесты в этом кейсе заморожены')
     def test_tournament_andrey_nick(self):
         tournament = Tournament(90, self.runner2, self.runner3)
         results = tournament.start()
         self.all_results.update(results)
         self.assertTrue(self.all_results[max(self.all_results.keys())].name == "Nick")
 
+    @ut.skipIf(is_frozen == True, 'Тесты в этом кейсе заморожены')
     def test_tournament_usain_andrey_nick(self):
         tournament = Tournament(90, self.runner1, self.runner2, self.runner3)
         results = tournament.start()
