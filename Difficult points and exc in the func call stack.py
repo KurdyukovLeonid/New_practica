@@ -10,10 +10,15 @@ def personal_sum(numbers):
             incorrect_data += 1
     return result, incorrect_data
 
+
 def calculate_average(numbers):
     try:
+        if isinstance(numbers, str):
+            numbers = numbers.split(",")
+
         if not isinstance(numbers, (list, tuple)):
             raise TypeError
+
         total, incorrect_data_count = personal_sum(numbers)
         count = len(numbers) - incorrect_data_count
         average = total / count if count > 0 else 0
@@ -23,7 +28,7 @@ def calculate_average(numbers):
         return 0
     except TypeError:
         print('В numbers записан некорректный тип данных')
-        return None
+        return 0
 
 
 print(f'Результат 1: {calculate_average("1, 2, 3")}')
