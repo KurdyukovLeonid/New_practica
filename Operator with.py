@@ -11,7 +11,7 @@ class WordsFinder:
             with open(file_name, 'r', encoding='utf-8') as file:
                 content = file.read()
                 content = content.lower()
-                translator = str.maketrans('', '', string.punctuation + '')
+                translator = str.maketrans('', '', string.punctuation.replace("'", ""))
                 cleaned_content = content.translate(translator)
                 words = cleaned_content.split()
                 all_words[file_name] = words
@@ -20,14 +20,16 @@ class WordsFinder:
     def find(self, word):
         all_words = self.get_all_words()
         found_positions = {}
+        word = word.lower()
         for file_name, words in all_words.items():
             if word in words:
-                found_positions[file_name] = words.index(word)
+                found_positions[file_name] = words.index(word) + 1
         return found_positions
 
     def count(self, word):
         all_words = self.get_all_words()
         word_counts = {}
+        word = word.lower()
         for file_name, words in all_words.items():
             word_counts[file_name] = words.count(word)
         return word_counts
